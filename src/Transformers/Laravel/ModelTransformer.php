@@ -2,9 +2,9 @@
 
 namespace HollyIT\TokenReplace\Transformers\Laravel;
 
+use HollyIT\TokenReplace\Contracts\Transformer;
 use HollyIT\TokenReplace\Exceptions\InvalidTransformerOptionsException;
 use HollyIT\TokenReplace\TokenReplacer;
-use HollyIT\TokenReplace\Contracts\Transformer;
 use Illuminate\Database\Eloquent\Model;
 
 class ModelTransformer implements Transformer

@@ -2,7 +2,6 @@
 
 namespace HollyIT\TokenReplace;
 
-
 use HollyIT\TokenReplace\Contracts\Transformer;
 
 class TokenReplacer
@@ -376,10 +375,9 @@ class TokenReplacer
     public function tokenSeparator(string $tokenSeparator): TokenReplacer
     {
         $this->tokenSeparator = $tokenSeparator;
+
         return $this;
     }
-
-
 
     public function __toString(): string
     {

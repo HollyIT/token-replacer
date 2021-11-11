@@ -3,9 +3,9 @@
 namespace HollyIT\TokenReplace\Transformers;
 
 use DateTime;
+use HollyIT\TokenReplace\Contracts\Transformer;
 use HollyIT\TokenReplace\Exceptions\InvalidTransformerOptionsException;
 use HollyIT\TokenReplace\TokenReplacer;
-use HollyIT\TokenReplace\Contracts\Transformer;
 
 class DateTransformer implements Transformer
 {
