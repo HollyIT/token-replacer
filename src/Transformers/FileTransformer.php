@@ -22,7 +22,7 @@ class FileTransformer implements Transformer
         }
 
         $parts = pathinfo($this->path);
-
+        $parts['dirname'] = $parts['dirname'] === '.' ? '' : $parts['dirname'];
         return array_key_exists($options, $parts) ? $parts[$options] : '';
     }
 }
