@@ -9,7 +9,7 @@ use HollyIT\TokenReplace\Transformers\ArrayTransformer;
 class ArrayTransformerTest extends TestCase
 {
     /** @test **/
-    public function test_it_extracts_items_from_an_array()
+    public function it_extracts_items_from_an_array()
     {
         $str = 'The quick brown {{animal:jumper}} jumped over the lazy {{animal:target}}';
         $transformer = TokenReplacer::from($str)
