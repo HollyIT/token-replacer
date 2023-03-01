@@ -307,7 +307,7 @@ class TokenReplacer
                 if (str_contains($matches[1][$key], ':')) {
                     list($token, $args) = explode(':', $matches[1][$key], 2);
                 }
-                $results = $this->doTransformation(trim($token), trim($args));
+                $results = $this->doTransformation(trim($token), trim($args ?? ''));
 
                 // Let our callback to any alterations if set.
                 if (is_callable($this->replaceCallback)) {
