@@ -6,7 +6,7 @@ use HollyIT\TokenReplace\Tests\TestCase;
 
 class ClosureTransformerTest extends TestCase
 {
-    /** @test * */
+    /** @test **/
     public function it_transforms_via_closures()
     {
         $transformer = new \HollyIT\TokenReplace\TokenReplacer('with {{ test1:options }} and without {{ test2 }}');
