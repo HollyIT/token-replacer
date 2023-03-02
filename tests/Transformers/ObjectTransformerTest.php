@@ -8,7 +8,7 @@ use HollyIT\TokenReplace\Transformers\ObjectTransformer;
 
 class ObjectTransformerTest extends TestCase
 {
-    /** @test * */
+    /** @test **/
     public function it_extracts_items_from_an_array()
     {
         $str = 'The quick brown {{animal:jumper}} jumped over the lazy {{animal:target}}';

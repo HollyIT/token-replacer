@@ -8,7 +8,7 @@ use HollyIT\TokenReplace\Transformers\ArrayTransformer;
 
 class ArrayTransformerTest extends TestCase
 {
-    /** @test * */
+    /** @test **/
     public function it_extracts_items_from_an_array()
     {
         $str = 'The quick brown {{animal:jumper}} jumped over the lazy {{animal:target}}';
@@ -21,7 +21,7 @@ class ArrayTransformerTest extends TestCase
         $this->assertEquals('The quick brown fox jumped over the lazy dog', $transformer->transform());
     }
 
-    /** @test * */
+    /** @test **/
     public function it_removes_missing_array_values()
     {
         $str = 'The quick brown {{animal:jumper}} jumped over the lazy {{animal:target}}';

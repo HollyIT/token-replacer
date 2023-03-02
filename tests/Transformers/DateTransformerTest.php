@@ -8,7 +8,7 @@ use HollyIT\TokenReplace\Transformers\DateTransformer;
 
 class DateTransformerTest extends TestCase
 {
-    /** @test */
+    /** @test **/
     public function it_transforms_a_date()
     {
         $transformer = new \HollyIT\TokenReplace\TokenReplacer('replace a {{ date:m }}/{{ date:d }}/{{ date:y }} date token');
@@ -20,7 +20,7 @@ class DateTransformerTest extends TestCase
             ]) . ' date token', (string) $transformer);
     }
 
-    /** @test * */
+    /** @test **/
     public function it_requires_a_format_option()
     {
         $transformer = new \HollyIT\TokenReplace\TokenReplacer('{{ date }}');

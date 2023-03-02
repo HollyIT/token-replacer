@@ -8,7 +8,7 @@ use HollyIT\TokenReplace\Transformers\FileTransformer;
 
 class FileTransformerTest extends TestCase
 {
-    /** @test * */
+    /** @test **/
     public function is_extract_from_a_file_path()
     {
         $path = '/home/me/test.txt';

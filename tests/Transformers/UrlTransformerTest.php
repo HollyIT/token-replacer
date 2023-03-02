@@ -8,7 +8,7 @@ use HollyIT\TokenReplace\Transformers\UrlTransformer;
 
 class UrlTransformerTest extends TestCase
 {
-    /** @test * */
+    /** @test **/
     public function is_extract_from_a_file_path()
     {
         $url = 'https://example.com/index.html';
