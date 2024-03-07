@@ -314,7 +314,7 @@ class TokenReplacer
                     $results = call_user_func($this->replaceCallback, $results, $token, $args);
                 }
 
-                if ($results || $this->removeInvalid) {
+                if (($results !== '' && $results !== null && $results !== false) || $this->removeInvalid) {
                     $this->replacements[$search] = (string) $callback($results);
                 }
             }

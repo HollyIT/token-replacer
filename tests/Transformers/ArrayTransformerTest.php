@@ -33,4 +33,17 @@ class ArrayTransformerTest extends TestCase
 
         $this->assertEquals('The quick brown fox jumped over the lazy ', $transformer->transform());
     }
+
+    /** @test **/
+    public function it_allows_a_string_of_0_to_pass()
+    {
+        $str = 'My bank account balance sits at {{account:balance}}';
+        $transformer = TokenReplacer::from($str)
+            ->with('account', new ArrayTransformer([
+                'balance' => '0',
+            ]));
+
+
+        $this->assertEquals('My bank account balance sits at 0', $transformer->transform());
+    }
 }
