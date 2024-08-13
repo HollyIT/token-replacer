@@ -5,11 +5,11 @@ namespace HollyIT\TokenReplace\Tests\Transformers;
 use HollyIT\TokenReplace\Tests\TestCase;
 use HollyIT\TokenReplace\TokenReplacer;
 use HollyIT\TokenReplace\Transformers\ObjectTransformer;
+use PHPUnit\Framework\Attributes\Test;
 
 class ObjectTransformerTest extends TestCase
 {
-    /** @test **/
-    public function it_extracts_items_from_an_array()
+    #[Test] public function it_extracts_items_from_an_array()
     {
         $str = 'The quick brown {{animal:jumper}} jumped over the lazy {{animal:target}}';
         $obj = new \stdClass();

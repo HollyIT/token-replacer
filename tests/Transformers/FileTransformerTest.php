@@ -5,11 +5,11 @@ namespace HollyIT\TokenReplace\Tests\Transformers;
 use HollyIT\TokenReplace\Tests\TestCase;
 use HollyIT\TokenReplace\TokenReplacer;
 use HollyIT\TokenReplace\Transformers\FileTransformer;
+use PHPUnit\Framework\Attributes\Test;
 
 class FileTransformerTest extends TestCase
 {
-    /** @test **/
-    public function is_extract_from_a_file_path()
+    #[Test] public function is_extract_from_a_file_path()
     {
         $path = '/home/me/test.txt';
         $replacer = TokenReplacer::from('{{ file:basename }} is located in {{ file:dirname }}')
