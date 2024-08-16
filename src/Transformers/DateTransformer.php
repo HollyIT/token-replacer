@@ -1,11 +1,11 @@
 <?php
 
-namespace HollyIT\TokenReplace\Transformers;
+namespace JesseSchutt\TokenReplacer\Transformers;
 
 use DateTime;
-use HollyIT\TokenReplace\Contracts\Transformer;
-use HollyIT\TokenReplace\Exceptions\InvalidTransformerOptionsException;
-use HollyIT\TokenReplace\TokenReplacer;
+use JesseSchutt\TokenReplacer\Contracts\Transformer;
+use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
+use JesseSchutt\TokenReplacer\TokenReplacer;
 
 class DateTransformer implements Transformer
 {

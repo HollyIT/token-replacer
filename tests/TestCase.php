@@ -1,13 +1,13 @@
 <?php
 
-namespace HollyIT\TokenReplace\Tests;
+namespace JesseSchutt\TokenReplacer\Tests;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
     protected function setUp(): void
     {
-        \HollyIT\TokenReplace\TokenReplacer::$defaultTransformers = [
-            'date' => \HollyIT\TokenReplace\Transformers\DateTransformer::class,
+        \JesseSchutt\TokenReplacer\TokenReplacer::$defaultTransformers = [
+            'date' => \JesseSchutt\TokenReplacer\Transformers\DateTransformer::class,
         ];
     }
 }

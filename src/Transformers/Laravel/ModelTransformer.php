@@ -1,10 +1,10 @@
 <?php
 
-namespace HollyIT\TokenReplace\Transformers\Laravel;
+namespace JesseSchutt\TokenReplacer\Transformers\Laravel;
 
-use HollyIT\TokenReplace\Contracts\Transformer;
-use HollyIT\TokenReplace\Exceptions\InvalidTransformerOptionsException;
-use HollyIT\TokenReplace\TokenReplacer;
+use JesseSchutt\TokenReplacer\Contracts\Transformer;
+use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
+use JesseSchutt\TokenReplacer\TokenReplacer;
 use Illuminate\Database\Eloquent\Model;
 
 class ModelTransformer implements Transformer

@@ -1,6 +1,6 @@
 <?php
 
-namespace HollyIT\TokenReplace\Transformers\Laravel;
+namespace JesseSchutt\TokenReplacer\Transformers\Laravel;
 
 class AuthTransformer extends ModelTransformer
 {

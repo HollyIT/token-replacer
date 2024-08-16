@@ -1,45 +1,48 @@
 {
-    "name": "hollyit/token-replace",
-    "description": "Define tokens and replace the occurrences in strings.",
-    "keywords": [
-        "HollyIT",
-        "laravel"
-    ],
-    "homepage": "https://github.com/hollyit/token-replace",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Jamie Holly",
-            "email": "jamie@hollyit.net",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": "^8.2",
-        "phpunit/phpunit": "^10.0|^11.0"
+  "name": "jesseschutt/token-replacer",
+  "description": "Define tokens and replace the occurrences in strings.",
+  "keywords": [
+    "token-replacement",
+    "laravel"
+  ],
+  "homepage": "https://github.com/jesseschutt/token-replacer",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jesse Schutt",
+      "email": "jesseschutt@gmail.com",
+      "role": "Developer"
     },
-    "require-dev": {
-
-    },
-    "autoload": {
-        "psr-4": {
-            "HollyIT\\TokenReplace\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "HollyIT\\TokenReplace\\Tests\\": "tests"
-        }
-    },
-    "scripts": {
-        "phpstan": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest coverage"
-    },
-    "config": {
-        "sort-packages": true
-    },
-
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    {
+      "name": "Jamie Holly",
+      "email": "jamie@hollyit.net",
+      "role": "Original Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "phpunit/phpunit": "^10.0|^11.0"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "JesseSchutt\\TokenReplacer\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "JesseSchutt\\TokenReplacer\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "phpstan": "vendor/bin/phpstan analyse",
+    "test": "vendor/bin/pest",
+    "test-coverage": "vendor/bin/pest coverage"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

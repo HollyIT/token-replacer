@@ -1,10 +1,10 @@
 <?php
 
-namespace HollyIT\TokenReplace\Transformers\Laravel;
+namespace JesseSchutt\TokenReplacer\Transformers\Laravel;
 
-use HollyIT\TokenReplace\Exceptions\InvalidTransformerOptionsException;
-use HollyIT\TokenReplace\TokenReplacer;
-use HollyIT\TokenReplace\Transformers\Transformer;
+use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
+use JesseSchutt\TokenReplacer\TokenReplacer;
+use JesseSchutt\TokenReplacer\Transformers\Transformer;
 use Illuminate\Support\Arr;
 
 class DotArrayTransformer extends Transformer

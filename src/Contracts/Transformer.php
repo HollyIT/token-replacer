@@ -1,8 +1,8 @@
 <?php
 
-namespace HollyIT\TokenReplace\Contracts;
+namespace JesseSchutt\TokenReplacer\Contracts;
 
-use HollyIT\TokenReplace\TokenReplacer;
+use JesseSchutt\TokenReplacer\TokenReplacer;
 
 interface Transformer
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace HollyIT\TokenReplace\Tests\Transformers;
+namespace JesseSchutt\TokenReplacer\Tests\Transformers;
 
-use HollyIT\TokenReplace\Tests\TestCase;
-use HollyIT\TokenReplace\TokenReplacer;
-use HollyIT\TokenReplace\Transformers\ObjectTransformer;
+use JesseSchutt\TokenReplacer\Tests\TestCase;
+use JesseSchutt\TokenReplacer\TokenReplacer;
+use JesseSchutt\TokenReplacer\Transformers\ObjectTransformer;
 use PHPUnit\Framework\Attributes\Test;
 
 class ObjectTransformerTest extends TestCase

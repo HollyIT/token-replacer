@@ -1,10 +1,10 @@
 <?php
 
-namespace HollyIT\TokenReplace\Tests\Transformers;
+namespace JesseSchutt\TokenReplacer\Tests\Transformers;
 
-use HollyIT\TokenReplace\Tests\TestCase;
-use HollyIT\TokenReplace\TokenReplacer;
-use HollyIT\TokenReplace\Transformers\FileTransformer;
+use JesseSchutt\TokenReplacer\Tests\TestCase;
+use JesseSchutt\TokenReplacer\TokenReplacer;
+use JesseSchutt\TokenReplacer\Transformers\FileTransformer;
 use PHPUnit\Framework\Attributes\Test;
 
 class FileTransformerTest extends TestCase
