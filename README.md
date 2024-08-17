@@ -1,8 +1,12 @@
 
 # Token Replacer
 
+![Build Status](https://github.com/jesseschutt/token-replacer/actions/workflows/run-tests.yml/badge.svg)
+![Code Coverage](https://img.shields.io/codecov/c/github/jesseschutt/token-replacer)
+![Dependencies](https://img.shields.io/librariesio/github/jesseschutt/token-replacer)
+
 ### Credit
-This package is a fork of the [original](https://github.com/HollyIT/token-replacer), which was created by Jamie Holly of HollyIT. I've used it in a few projects and decided to add some features and keep it compatible with more recent versions of Laravel. Thank you for creating it Jamie!
+This package is a fork of the [original](https://github.com/HollyIT/token-replacer), which was created by Jamie Holly of HollyIT.
 
 ### Installation
     
@@ -10,48 +14,53 @@ This package is a fork of the [original](https://github.com/HollyIT/token-replac
 composer require jesseschutt/token-replacer
 ```
 
+### Configuration
+
+You can publish the configuration file by running the following command:
+
+```
+php artisan vendor:publish --provider="JesseSchutt\TokenReplacer\TokenReplacerServiceProvider"
+```
+
+This will create a `token-replacer.php` file in your `config` directory. Here you can set the default token start and end characters, the default token separator, and the default transformers.
+
 ### Instructions
 
-This simple package allows you to define tokens that can be replaced in strings. Instead of a simple `str_replace`, Token Replace lets you add options to each token. Let's start with an example.
+This package allows you to define tokens that can be replaced in strings. Instead of a simple `str_replace`, Token Replacer lets you add options to each token. Let's start with an example.
 
 ```  
+use \JesseSchutt\TokenReplacer\Facades\TokenReplacer;
+use \JesseSchutt\TokenReplacer\Transformers\DateTransformer;
+
 $input="Today is {{ date:m }}/{{ date:d }}/{{ date:y }}.";  
   
-echo \JesseSchutt\TokenReplacer\TokenReplacer::from($input)  
-    ->with('date',  \JesseSchutt\TokenReplacer\Transformers\DateTransformer::class)  
+echo TokenReplacer::from($input)->with('date', DateTransformer::class)  
       
 // Results in: Today is 11/11/21.      
-  
 ```  
 
-There is a certain anatomy to tokens, so let's take a look  
-at the `{{ date:m }}`. This is a default token format, but  
-this format is configurable globally and per instance.
+There is a certain anatomy to tokens, so let's take a look at the `{{ date:m }}`. This is a default token format, but this format is configurable globally and per instance.
 
-| Part |  Name | Global Setting  | Local Setting
-|--|--|--|--|
-| {{ | Token Start | $defaultStartToken | $instance->startToken() |
+| Part |  Name | Global Setting                                      | Local Setting
+|--|--|-----------------------------------------------------|--|
+| {{ | Token Start | `config('token-replacer.default_start_token')`      | $instance->startToken() |
 | date | Token Name | --- |--- |
-| : | Token Separator | $defaultTokenSeparator | $instance->tokenSeparator() |
+| : | Token Separator | `config('token-replacer.default_ token_separator')` | $instance->tokenSeparator() |
 | m | Options | --- | --- |
-| }} | Token End | $defaultEndToken | $instance->endToken() |
+| }} | Token End | `config('token-replacer.default_end_token')`        | $instance->endToken() |
 
 ### Transformers
 
 The replacement of tokens is handled via a transformer. A transformer can be a closure or a simple class.
 
-Transformers can be added to each instance of the TokenReplacer or added globally by executing the following
-in the bootstrap phase of your app:
+Transformers can be added to each instance of the TokenReplacer or added globally by adding them to the `default_transformers` array in the configuration file. 
 
-```
-\JesseSchutt\TokenReplacer\TokenReplacer::$defaultTransformers = [  
-  'date' => \JesseSchutt\TokenReplacer\Transformers\DateTransformer::class  
-];
-```
+**Note:** Global transformers do not receive any data when instantiated. `DateTransformer` and `AuthTransformer` are the only two built-in transformers that are eligible for global use.
+
 Per instance tokens are added via `$instance->with({token name}, {class name, transformer instance or closure});` For closure based transformers the signature is:
 
 ```
-function(string $options, TokenReplacer $replacer)
+function(string $options)
 ``` 
 
 #### Included Transformers

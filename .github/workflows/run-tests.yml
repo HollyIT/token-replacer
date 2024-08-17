@@ -1,0 +1,41 @@
+name: PHPUnit
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, xml, ctype, json, curl, dom, pdo, pdo_mysql, xdebug
+          ini-values: post_max_size=256M, upload_max_filesize=256M, memory_limit=1G
+          coverage: xdebug
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest --no-interaction
+
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --coverage-clover=build/logs/clover.xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: build/logs/clover.xml
+          flags: unittests
+          name: codecov-umbrella
+          token: ${{ secrets.CODECOV_TOKEN }}
