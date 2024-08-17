@@ -24,7 +24,7 @@ jobs:
           php-version: '8.3'
           extensions: mbstring, xml, ctype, json, curl, dom, pdo, pdo_mysql, xdebug
           ini-values: post_max_size=256M, upload_max_filesize=256M, memory_limit=1G
-          coverage: none
+          coverage: xdebug
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest --no-interaction
