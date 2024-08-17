@@ -1,6 +1,10 @@
 
 # Token Replacer
 
+![Build Status](https://github.com/{jesseschutt}/{token-replacer}/actions/workflows/{run-tests}.yml/badge.svg)
+![Code Coverage](https://img.shields.io/codecov/c/github/{jesseschutt}/{token-replacer})
+![Dependencies](https://img.shields.io/librariesio/github/{jesseschutt}/{token-replacer})
+
 ### Credit
 This package is a fork of the [original](https://github.com/HollyIT/token-replacer), which was created by Jamie Holly of HollyIT. I've used it in a few projects and decided to add some features and keep it compatible with more recent versions of Laravel. Thank you for creating it Jamie!
 
