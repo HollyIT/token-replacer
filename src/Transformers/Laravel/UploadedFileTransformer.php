@@ -2,21 +2,18 @@
 
 namespace JesseSchutt\TokenReplacer\Transformers\Laravel;
 
+use Illuminate\Http\UploadedFile;
 use JesseSchutt\TokenReplacer\Contracts\Transformer;
 use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
-use JesseSchutt\TokenReplacer\TokenReplacer;
-use Illuminate\Http\UploadedFile;
 
 class UploadedFileTransformer implements Transformer
 {
-    protected UploadedFile $uploadedFile;
+    public function __construct(protected UploadedFile $uploadedFile) {}
 
-    public function __construct(UploadedFile $uploadedFile)
-    {
-        $this->uploadedFile = $uploadedFile;
-    }
-
-    public function process(string $options, TokenReplacer $replacer): string
+    /**
+     * @throws InvalidTransformerOptionsException
+     */
+    public function process(string $options): string
     {
         if (! $options) {
             throw new InvalidTransformerOptionsException('Upload transformer option required.');
@@ -25,6 +22,7 @@ class UploadedFileTransformer implements Transformer
         return match ($options) {
             'basename' => (string) pathinfo($this->uploadedFile->getClientOriginalName(), PATHINFO_BASENAME),
             'extension' => (string) $this->uploadedFile->guessClientExtension(),
+            'mimetype' => (string) $this->uploadedFile->getMimeType(),
             default => '',
         };
     }
