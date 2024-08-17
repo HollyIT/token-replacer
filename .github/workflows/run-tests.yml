@@ -38,3 +38,4 @@ jobs:
           file: build/logs/clover.xml
           flags: unittests
           name: codecov-umbrella
+          token: ${{ secrets.CODECOV_TOKEN }}
