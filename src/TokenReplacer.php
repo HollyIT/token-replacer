@@ -109,11 +109,6 @@ class TokenReplacer
         return $this;
     }
 
-    public function willRemoveEmpty(): bool
-    {
-        return $this->removeInvalid;
-    }
-
     private function getReplacementPattern(): string
     {
         $start = preg_quote($this->startToken);

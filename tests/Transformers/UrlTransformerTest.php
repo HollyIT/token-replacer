@@ -2,6 +2,7 @@
 
 namespace JesseSchutt\TokenReplacer\Tests\Transformers;
 
+use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
 use JesseSchutt\TokenReplacer\Facades\TokenReplacer;
 use JesseSchutt\TokenReplacer\Tests\TestCase;
 use JesseSchutt\TokenReplacer\Transformers\UrlTransformer;
@@ -16,5 +17,16 @@ class UrlTransformerTest extends TestCase
             ->with('url', new UrlTransformer('https://example.com/index.html'));
 
         $this->assertEquals('/index.html is located at https://example.com', $replacer->transform());
+    }
+
+    #[Test]
+    public function it_throws_an_exception_if_options_are_not_provided()
+    {
+        $transformer = TokenReplacer::from('{{url}}')
+            ->with('url', new UrlTransformer('https://example.com'));
+
+        $this->expectException(InvalidTransformerOptionsException::class);
+
+        $transformer->transform();
     }
 }

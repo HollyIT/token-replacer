@@ -2,6 +2,7 @@
 
 namespace JesseSchutt\TokenReplacer\Tests\Transformers;
 
+use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
 use JesseSchutt\TokenReplacer\Facades\TokenReplacer;
 use JesseSchutt\TokenReplacer\Tests\TestCase;
 use JesseSchutt\TokenReplacer\Transformers\ArrayTransformer;
@@ -41,5 +42,16 @@ class ArrayTransformerTest extends TestCase
             ]));
 
         $this->assertEquals('My bank account balance sits at 0', $transformer->transform());
+    }
+
+    #[Test]
+    public function it_throws_an_exception_if_options_are_not_provided()
+    {
+        $transformer = TokenReplacer::from('The quick brown {{animal}} jumped over the lazy {{animal}}')
+            ->with('animal', new ArrayTransformer([]));
+
+        $this->expectException(InvalidTransformerOptionsException::class);
+
+        $transformer->transform();
     }
 }

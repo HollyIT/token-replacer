@@ -2,6 +2,7 @@
 
 namespace JesseSchutt\TokenReplacer\Tests\Transformers\Laravel;
 
+use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
 use JesseSchutt\TokenReplacer\Facades\TokenReplacer;
 use JesseSchutt\TokenReplacer\Tests\TestCase;
 use JesseSchutt\TokenReplacer\Transformers\Laravel\DotArrayTransformer;
@@ -23,5 +24,16 @@ class DotArrayTransformerTest extends TestCase
             ]));
 
         $this->assertEquals('The quick brown fox jumped over the lazy dog', $transformer->transform());
+    }
+
+    #[Test]
+    public function it_throws_an_exception_if_options_are_not_provided()
+    {
+        $transformer = TokenReplacer::from('The quick brown {{animal}} jumped over the lazy {{animal}}')
+            ->with('animal', new DotArrayTransformer([]));
+
+        $this->expectException(InvalidTransformerOptionsException::class);
+
+        $transformer->transform();
     }
 }

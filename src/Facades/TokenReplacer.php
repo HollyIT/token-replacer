@@ -16,7 +16,6 @@ class TokenReplacer extends Facade
      * @method static array|callable[]|\JesseSchutt\TokenReplacer\Contracts\Transformer[] transformers()
      * @method static \JesseSchutt\TokenReplacer\TokenReplacer onReplace(callable $callback)
      * @method static \JesseSchutt\TokenReplacer\TokenReplacer removeEmpty(bool $removeEmptyTokens = true)
-     * @method static bool willRemoveEmpty()
      * @method static string|null doTransformation(string $transformer, mixed $options)
      * @method static string transform()
      * @method static string __toString()
