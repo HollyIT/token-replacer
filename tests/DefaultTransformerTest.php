@@ -25,6 +25,6 @@ class DefaultTransformerTest extends TestCase
                 ],
             ]));
 
-        dd($transformer->transform());
+        $this->assertEquals('Your name is Jesse Schutt and today is ' . date('Y-m-d'), $transformer);
     }
 }
