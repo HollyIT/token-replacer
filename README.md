@@ -6,7 +6,7 @@
 ![Dependencies](https://img.shields.io/librariesio/github/jesseschutt/token-replacer)
 
 ### Credit
-This package is a fork of the [original](https://github.com/HollyIT/token-replacer), which was created by Jamie Holly of HollyIT. I've used it in a few projects and decided to add some features and keep it compatible with more recent versions of Laravel. Thank you for creating it Jamie!
+This package is a fork of the [original](https://github.com/HollyIT/token-replacer), which was created by Jamie Holly of HollyIT.
 
 ### Installation
     
