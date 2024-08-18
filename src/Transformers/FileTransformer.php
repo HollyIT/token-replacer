@@ -1,28 +1,27 @@
 <?php
 
-namespace HollyIT\TokenReplace\Transformers;
+namespace JesseSchutt\TokenReplacer\Transformers;
 
-use HollyIT\TokenReplace\Contracts\Transformer;
-use HollyIT\TokenReplace\Exceptions\InvalidTransformerOptionsException;
-use HollyIT\TokenReplace\TokenReplacer;
+use JesseSchutt\TokenReplacer\Contracts\Transformer;
+use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
 
 class FileTransformer implements Transformer
 {
-    protected string $path;
+    public function __construct(protected string $path) {}
 
-    public function __construct(string $path)
-    {
-        $this->path = $path;
-    }
-
-    public function process(string $options, TokenReplacer $replacer): string
+    /**
+     * @throws InvalidTransformerOptionsException
+     */
+    public function process(string $options): string
     {
         if (! $options) {
             throw new InvalidTransformerOptionsException('File transformer option required');
         }
 
         $parts = pathinfo($this->path);
+
         $parts['dirname'] = $parts['dirname'] === '.' ? '' : $parts['dirname'];
+
         return array_key_exists($options, $parts) ? $parts[$options] : '';
     }
 }

@@ -1,25 +1,23 @@
 <?php
 
-namespace HollyIT\TokenReplace\Transformers;
+namespace JesseSchutt\TokenReplacer\Transformers;
 
-use HollyIT\TokenReplace\Contracts\Transformer;
-use HollyIT\TokenReplace\Exceptions\InvalidTransformerOptionsException;
-use HollyIT\TokenReplace\TokenReplacer;
+use JesseSchutt\TokenReplacer\Contracts\Transformer;
+use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
 
 class UrlTransformer implements Transformer
 {
-    protected string $url;
+    public function __construct(protected string $url) {}
 
-    public function __construct(string $url)
-    {
-        $this->url = $url;
-    }
-
-    public function process(string $options, TokenReplacer $replacer): string
+    /**
+     * @throws InvalidTransformerOptionsException
+     */
+    public function process(string $options): string
     {
         if (! $options) {
             throw new InvalidTransformerOptionsException('URL transformer option required');
         }
+
         $parts = parse_url($this->url);
 
         return array_key_exists($options, $parts) ? $parts[$options] : '';

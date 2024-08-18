@@ -1,18 +1,19 @@
 <?php
 
-namespace HollyIT\TokenReplace\Tests\Transformers;
+namespace JesseSchutt\TokenReplacer\Tests\Transformers;
 
-use HollyIT\TokenReplace\Tests\TestCase;
-use HollyIT\TokenReplace\TokenReplacer;
-use HollyIT\TokenReplace\Transformers\ArrayTransformer;
+use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
+use JesseSchutt\TokenReplacer\Facades\TokenReplacer;
+use JesseSchutt\TokenReplacer\Tests\TestCase;
+use JesseSchutt\TokenReplacer\Transformers\ArrayTransformer;
+use PHPUnit\Framework\Attributes\Test;
 
 class ArrayTransformerTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_extracts_items_from_an_array()
     {
-        $str = 'The quick brown {{animal:jumper}} jumped over the lazy {{animal:target}}';
-        $transformer = TokenReplacer::from($str)
+        $transformer = TokenReplacer::from('The quick brown {{animal:jumper}} jumped over the lazy {{animal:target}}')
             ->with('animal', new ArrayTransformer([
                 'jumper' => 'fox',
                 'target' => 'dog',
@@ -21,16 +22,36 @@ class ArrayTransformerTest extends TestCase
         $this->assertEquals('The quick brown fox jumped over the lazy dog', $transformer->transform());
     }
 
-    /** @test **/
+    #[Test]
     public function it_removes_missing_array_values()
     {
-        $str = 'The quick brown {{animal:jumper}} jumped over the lazy {{animal:target}}';
-        $transformer = TokenReplacer::from($str)
+        $transformer = TokenReplacer::from('The quick brown {{animal:jumper}} jumped over the lazy {{animal:target}}')
             ->with('animal', new ArrayTransformer([
                 'jumper' => 'fox',
             ]))->removeEmpty(true);
 
-
         $this->assertEquals('The quick brown fox jumped over the lazy ', $transformer->transform());
+    }
+
+    #[Test]
+    public function it_allows_a_string_of_0_to_pass()
+    {
+        $transformer = TokenReplacer::from('My bank account balance sits at {{account:balance}}')
+            ->with('account', new ArrayTransformer([
+                'balance' => '0',
+            ]));
+
+        $this->assertEquals('My bank account balance sits at 0', $transformer->transform());
+    }
+
+    #[Test]
+    public function it_throws_an_exception_if_options_are_not_provided()
+    {
+        $transformer = TokenReplacer::from('The quick brown {{animal}} jumped over the lazy {{animal}}')
+            ->with('animal', new ArrayTransformer([]));
+
+        $this->expectException(InvalidTransformerOptionsException::class);
+
+        $transformer->transform();
     }
 }

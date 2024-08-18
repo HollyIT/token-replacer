@@ -1,32 +1,30 @@
 <?php
 
-namespace HollyIT\TokenReplace\Transformers;
+namespace JesseSchutt\TokenReplacer\Transformers;
 
 use DateTime;
-use HollyIT\TokenReplace\Contracts\Transformer;
-use HollyIT\TokenReplace\Exceptions\InvalidTransformerOptionsException;
-use HollyIT\TokenReplace\TokenReplacer;
+use JesseSchutt\TokenReplacer\Contracts\Transformer;
+use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
 
 class DateTransformer implements Transformer
 {
-    /**
-     * @var DateTime
-     */
-    protected DateTime $date;
-
-    public function __construct($date = null)
+    public function __construct(protected null|string|DateTime $date = null)
     {
         if (is_string($date)) {
-            $date = (new DateTime())->setTimestamp(strtotime($date));
+            $date = (new DateTime)->setTimestamp(strtotime($date));
         }
 
         if (! $date) {
-            $date = new DateTime();
+            $date = new DateTime;
         }
+
         $this->date = $date;
     }
 
-    public function process(string $options, TokenReplacer $replacer): string
+    /**
+     * @throws InvalidTransformerOptionsException
+     */
+    public function process(string $options): string
     {
         if (! $options) {
             throw new InvalidTransformerOptionsException('Date transformer option required');
