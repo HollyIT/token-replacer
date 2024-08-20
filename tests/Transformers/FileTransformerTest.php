@@ -1,32 +1,20 @@
 <?php
 
-namespace JesseSchutt\TokenReplacer\Tests\Transformers;
+namespace HollyIT\TokenReplace\Tests\Transformers;
 
-use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
-use JesseSchutt\TokenReplacer\Facades\TokenReplacer;
-use JesseSchutt\TokenReplacer\Tests\TestCase;
-use JesseSchutt\TokenReplacer\Transformers\FileTransformer;
-use PHPUnit\Framework\Attributes\Test;
+use HollyIT\TokenReplace\Tests\TestCase;
+use HollyIT\TokenReplace\TokenReplacer;
+use HollyIT\TokenReplace\Transformers\FileTransformer;
 
 class FileTransformerTest extends TestCase
 {
-    #[Test]
+    /** @test **/
     public function is_extract_from_a_file_path()
     {
+        $path = '/home/me/test.txt';
         $replacer = TokenReplacer::from('{{ file:basename }} is located in {{ file:dirname }}')
-            ->with('file', new FileTransformer('/home/me/test.txt'));
+            ->with('file', new FileTransformer($path));
 
         $this->assertEquals('test.txt is located in /home/me', $replacer);
-    }
-
-    #[Test]
-    public function it_throws_an_exception_if_options_are_not_provided()
-    {
-        $transformer = TokenReplacer::from('{{file}}')
-            ->with('file', new FileTransformer(''));
-
-        $this->expectException(InvalidTransformerOptionsException::class);
-
-        $transformer->transform();
     }
 }

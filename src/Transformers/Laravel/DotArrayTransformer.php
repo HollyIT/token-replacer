@@ -1,19 +1,22 @@
 <?php
 
-namespace JesseSchutt\TokenReplacer\Transformers\Laravel;
+namespace HollyIT\TokenReplace\Transformers\Laravel;
 
+use HollyIT\TokenReplace\Exceptions\InvalidTransformerOptionsException;
+use HollyIT\TokenReplace\TokenReplacer;
+use HollyIT\TokenReplace\Transformers\Transformer;
 use Illuminate\Support\Arr;
-use JesseSchutt\TokenReplacer\Contracts\Transformer;
-use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
 
-class DotArrayTransformer implements Transformer
+class DotArrayTransformer extends Transformer
 {
-    public function __construct(private readonly array $inputArray) {}
+    protected array $inputArray;
 
-    /**
-     * @throws InvalidTransformerOptionsException
-     */
-    public function process(string $options): string
+    public function __construct(array $inputArray)
+    {
+        $this->inputArray = $inputArray;
+    }
+
+    public function process(string $options, TokenReplacer $replacer): string
     {
         if (! $options) {
             throw new InvalidTransformerOptionsException('DotArrayTransformer option required');

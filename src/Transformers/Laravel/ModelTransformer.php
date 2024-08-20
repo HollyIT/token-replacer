@@ -1,20 +1,22 @@
 <?php
 
-namespace JesseSchutt\TokenReplacer\Transformers\Laravel;
+namespace HollyIT\TokenReplace\Transformers\Laravel;
 
-use DateTime;
+use HollyIT\TokenReplace\Contracts\Transformer;
+use HollyIT\TokenReplace\Exceptions\InvalidTransformerOptionsException;
+use HollyIT\TokenReplace\TokenReplacer;
 use Illuminate\Database\Eloquent\Model;
-use JesseSchutt\TokenReplacer\Contracts\Transformer;
-use JesseSchutt\TokenReplacer\Exceptions\InvalidTransformerOptionsException;
 
 class ModelTransformer implements Transformer
 {
-    public function __construct(protected ?Model $model) {}
+    protected ?Model $model;
 
-    /**
-     * @throws InvalidTransformerOptionsException
-     */
-    public function process(string $options): string
+    public function __construct($model)
+    {
+        $this->model = $model;
+    }
+
+    public function process(string $options, TokenReplacer $replacer): string
     {
         if (! $this->model) {
             return '';
@@ -22,7 +24,6 @@ class ModelTransformer implements Transformer
         if (! $options) {
             throw new InvalidTransformerOptionsException('Model transformers option required.');
         }
-
         if (str_contains($options, ',')) {
             $options = explode(',', $options);
             $property = $options[0];
@@ -31,10 +32,8 @@ class ModelTransformer implements Transformer
             $property = $options;
             $options = [];
         }
-
         $value = $this->model->{$property};
-
-        if ($value instanceof DateTime) {
+        if ($value instanceof \DateTime) {
             if (isset($options[0])) {
                 $value = $value->format($options[0]);
             }

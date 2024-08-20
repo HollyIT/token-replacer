@@ -1,8 +1,10 @@
 <?php
 
-namespace JesseSchutt\TokenReplacer\Contracts;
+namespace HollyIT\TokenReplace\Contracts;
+
+use HollyIT\TokenReplace\TokenReplacer;
 
 interface Transformer
 {
-    public function process(string $options): string;
+    public function process(string $options, TokenReplacer $replacer): string;
 }

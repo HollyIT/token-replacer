@@ -1,79 +1,45 @@
 {
-    "name": "jesseschutt/token-replacer",
+    "name": "hollyit/token-replace",
     "description": "Define tokens and replace the occurrences in strings.",
     "keywords": [
-        "token-replacement",
+        "HollyIT",
         "laravel"
     ],
-    "homepage": "https://github.com/jesseschutt/token-replacer",
+    "homepage": "https://github.com/hollyit/token-replace",
     "license": "MIT",
     "authors": [
         {
-            "name": "Jesse Schutt",
-            "email": "jesseschutt@gmail.com",
-            "role": "Developer"
-        },
-        {
             "name": "Jamie Holly",
             "email": "jamie@hollyit.net",
-            "role": "Original Developer"
+            "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.2",
-        "laravel/framework": "^10.0|^11.0",
-        "phpunit/phpunit": "^10.0|^11.0"
+        "php": "^8.1",
+        "phpunit/phpunit": "^10.0"
     },
     "require-dev": {
-        "laravel/pint": "^1.17",
-        "orchestra/testbench": "^9.3"
+
     },
     "autoload": {
         "psr-4": {
-            "JesseSchutt\\TokenReplacer\\": "src"
+            "HollyIT\\TokenReplace\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "JesseSchutt\\TokenReplacer\\Tests\\": "tests",
-            "Workbench\\App\\": "workbench/app/",
-            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
-            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+            "HollyIT\\TokenReplace\\Tests\\": "tests"
         }
     },
     "scripts": {
         "phpstan": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit coverage",
-        "post-autoload-dump": [
-            "@clear",
-            "@prepare"
-        ],
-        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
-        "prepare": "@php vendor/bin/testbench package:discover --ansi",
-        "build": "@php vendor/bin/testbench workbench:build --ansi",
-        "serve": [
-            "Composer\\Config::disableProcessTimeout",
-            "@build",
-            "@php vendor/bin/testbench serve --ansi"
-        ],
-        "lint": [
-            "@php vendor/bin/phpstan analyse --verbose --ansi"
-        ]
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest coverage"
     },
     "config": {
         "sort-packages": true
     },
+
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "extra": {
-        "laravel": {
-            "providers": [
-                "JesseSchutt\\TokenReplacer\\ServiceProvider"
-            ],
-            "aliases": {
-                "Debugbar": "JesseSchutt\\TokenReplacer\\Facades\\TokenReplacer"
-            }
-        }
-    }
+    "prefer-stable": true
 }
