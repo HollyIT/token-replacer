@@ -1,5 +1,7 @@
 <?php
 
-namespace JesseSchutt\TokenReplacer\Exceptions;
+namespace HollyIT\TokenReplace\Exceptions;
 
-class InvalidTransformerOptionsException extends \Exception {}
+class InvalidTransformerOptionsException extends \Exception
+{
+}

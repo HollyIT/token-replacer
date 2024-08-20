@@ -1,30 +1,13 @@
 <?php
 
-namespace JesseSchutt\TokenReplacer\Tests;
+namespace HollyIT\TokenReplace\Tests;
 
-use JesseSchutt\TokenReplacer\ServiceProvider;
-use Orchestra\Testbench\Concerns\WithWorkbench;
-
-class TestCase extends \Orchestra\Testbench\TestCase
+class TestCase extends \PHPUnit\Framework\TestCase
 {
-    use WithWorkbench;
-
     protected function setUp(): void
     {
-        parent::setUp();
-    }
-
-    protected function getPackageProviders($app): array
-    {
-        return [
-            ServiceProvider::class,
-        ];
-    }
-
-    protected function getPackageAliases($app)
-    {
-        return [
-            'TokenReplacer' => '\JesseSchutt\TokenReplacer\Facades\TokenReplacer',
+        \HollyIT\TokenReplace\TokenReplacer::$defaultTransformers = [
+            'date' => \HollyIT\TokenReplace\Transformers\DateTransformer::class,
         ];
     }
 }
